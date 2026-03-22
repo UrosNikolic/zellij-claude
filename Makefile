@@ -13,6 +13,7 @@ release: build
 		next="$${prefix}$$((patch + 1))"; \
 	fi; \
 	echo "$$latest -> $$next"; \
+	git add -A && git commit -m "release $$next" || true; \
 	git tag "$$next" && git push && git push origin "$$next"
 
 release-minor: build
@@ -25,6 +26,7 @@ release-minor: build
 		next="v$${major}.$$((minor + 1)).0"; \
 	fi; \
 	echo "$$latest -> $$next"; \
+	git add -A && git commit -m "release $$next" || true; \
 	git tag "$$next" && git push && git push origin "$$next"
 
 release-major: build
@@ -36,4 +38,5 @@ release-major: build
 		next="v$$((major + 1)).0.0"; \
 	fi; \
 	echo "$$latest -> $$next"; \
+	git add -A && git commit -m "release $$next" || true; \
 	git tag "$$next" && git push && git push origin "$$next"

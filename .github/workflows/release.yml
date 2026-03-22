@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip1
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/wasm32-wasip1/release/zellij-claude.wasm
+          generate_release_notes: true

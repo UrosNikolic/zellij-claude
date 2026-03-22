@@ -29,37 +29,36 @@ Quickly see all your running Claude Code sessions across Zellij sessions, check 
 
 ## Installation
 
-### From Release
+Add this keybinding to your Zellij config (`~/.config/zellij/config.kdl`) — Zellij will download and cache the plugin automatically:
 
-1. Download the latest `zellij-claude.wasm` from [Releases](https://github.com/firefightlabs/zellij-claude/releases)
-2. Place it somewhere accessible (e.g., `~/.config/zellij/plugins/`)
-3. Add a keybinding to your Zellij config (see [Configuration](#configuration))
+```kdl
+keybinds {
+    shared {
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "https://github.com/UrosNikolic/zellij-claude/releases/latest/download/zellij-claude.wasm" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
+    }
+}
+```
 
 ### Build from Source
 
-Requires [Rust](https://rustup.rs/) with the `wasm32-wasip1` target:
+Alternatively, build from source with [Rust](https://rustup.rs/):
 
 ```bash
 rustup target add wasm32-wasip1
 cargo build --release
 ```
 
-The compiled plugin will be at `target/wasm32-wasip1/release/zellij-claude.wasm`.
-
-## Configuration
-
-Add a keybinding to your Zellij config (`~/.config/zellij/config.kdl`):
+Then use the local path in your config:
 
 ```kdl
-keybinds {
-    shared {
-        bind "Ctrl y" {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-claude.wasm" {
-                floating true
-                move_to_focused_tab true
-            }
-        }
-    }
+LaunchOrFocusPlugin "file:target/wasm32-wasip1/release/zellij-claude.wasm" {
+    floating true
+    move_to_focused_tab true
 }
 ```
 

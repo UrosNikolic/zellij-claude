@@ -4,6 +4,8 @@ A [Zellij](https://zellij.dev) plugin for managing and switching between [Claude
 
 Quickly see all your running Claude Code sessions across Zellij sessions, check their status at a glance, and jump to any one with a keystroke.
 
+![zellij-claude](assets/screenshot.png)
+
 ## Features
 
 - 🔍 **Live session discovery** — automatically detects all running Claude Code instances
@@ -34,7 +36,7 @@ Add this keybinding to your Zellij config (`~/.config/zellij/config.kdl`) — Ze
 ```kdl
 keybinds {
     shared {
-        bind "Ctrl y" {
+        bind "Ctrl e" {
             LaunchOrFocusPlugin "https://github.com/UrosNikolic/zellij-claude/releases/latest/download/zellij-claude.wasm" {
                 floating true
                 move_to_focused_tab true
